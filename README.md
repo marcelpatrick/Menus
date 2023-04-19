@@ -4,6 +4,7 @@
 - in MenuButtons.build.cs:
   - Include "UMG" inside public dependencies
   - Uncomment where it sayas "incomment if using Slate UI"
+  - Create a PlayerController C++ class and a GameModeBase C++ class and convert them into blueprints
   
 - GameModeBase.h
   - #include "Blueprint/UserWidget.h"
@@ -57,7 +58,7 @@ void AMenuButtonsGameModeBase::BeginPlay()
  
 - PlayerController.h
   - Declare BeginPlay()
-  - Declare a function to print the message to the log and expose it with UPROPERTY so that it can be called from a BP
+  - Declare a function to print the message to the log and expose it with UFUNCTION so that it can be called from a BP
 
 ```cpp
 UCLASS()
@@ -70,9 +71,8 @@ public:
 	virtual void BeginPlay() override;
 
 	//A function to print the message to the log window and gets called from a BP
-	UPROPERTY(BlueprintCallable)
+	UFUNCTION(BlueprintCallable)
 	void Speak();
-	
 };
 ```
 
@@ -102,7 +102,14 @@ void AMenuButtonsPlayerController::Speak()
 - in Unreal Engine
   - Create a folder for Menues, include an image for the pressed and unpressed buttons
   - Create a WidgetBlueprint: Right click > UI > WidgetBlueprint
-    - Add a button, resize and ancor
+    - Add a button, resize and ancor, change the collors for when normal, hovered and pressed
+  - On project settings > maps and modes: replace game mode base to my BP_MenuButtonsGameModeBase and my player controller with my BP_MenuButtonsPlayerController.
+  - In BP_MenuButtonsGameModeBase select the Menu Widget in My Widget component
+
+## Buttons functionality
+- In my MenuWidget on buttons event, select OnClick event
+  - In the OnClick Event graph
+    - 
 
 
 
