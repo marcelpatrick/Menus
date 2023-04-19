@@ -55,3 +55,68 @@ void AMenuButtonsGameModeBase::BeginPlay()
 }
 ```
  
+- PlayerController.h
+  - Declare BeginPlay()
+  - Declare a function to print the message to the log and expose it with UPROPERTY so that it can be called from a BP
+
+```cpp
+UCLASS()
+class MENUBUTTONS_API AMenuButtonsPlayerController : public APlayerController
+{
+	GENERATED_BODY()
+
+public:
+
+	virtual void BeginPlay() override;
+
+	//A function to print the message to the log window and gets called from a BP
+	UPROPERTY(BlueprintCallable)
+	void Speak();
+	
+};
+```
+
+- PlayerController.cpp
+  - Allow player to interact with the screen / UI
+  - Allow player to see mouse coursor
+  - Print Message
+
+```cpp
+void AMenuButtonsPlayerController::BeginPlay()
+{
+    Super::BeginPlay();
+
+    //Allow player to interact with the screen (UI) to click on buttons on the screen
+    SetInputMode(FInputModeGameAndUI());
+
+    //Allow player to see mouse coursor on the screen
+    bShowMouseCursor = true;
+}
+
+void AMenuButtonsPlayerController::Speak()
+{
+    UE_LOG(LogTemp, Warning, TEXT("Hi!!!"));
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
