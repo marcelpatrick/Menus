@@ -109,7 +109,7 @@ void AMenuButtonsPlayerController::Speak()
 ## Buttons functionality
 - In my MenuWidget on buttons event, select OnClick event
   - In the OnClick Event graph
-    - 
+    - Get PlayerController > return an object and Cast it to BP_MenuButtonsPlayerControllerType (to use my custom player controller) / Execute OnClicked > call Speak with BP_MenuButtonsPlayerController as Target 
 
 
 
