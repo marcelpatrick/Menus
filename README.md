@@ -2,9 +2,9 @@
 
 ## Preparation
 - in MenuButtons.build.cs:
-  - Include "UMG" inside public dependencies
+  - Include "UMG" inside PublicDependenciesModuleNames
   - Uncomment where it sayas "incomment if using Slate UI"
-  - Create a PlayerController C++ class and a GameModeBase C++ class and convert them into blueprints
+  - Create a custom PlayerController C++ class and a GameModeBase C++ class and convert them into blueprints
   
 - GameModeBase.h
   - #include "Blueprint/UserWidget.h"
@@ -27,7 +27,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "MyWidget")
 	TSubclassOf<UUserWidget> MenuWidgetClass;
-	
 };
 ```
 
@@ -44,7 +43,7 @@ void AMenuButtonsGameModeBase::BeginPlay()
     if (MenuWidgetClass != nullptr)
     {
         //Create the widget and store it inside a pointer to a UUserWidget object
-                                    //TemplateFunction<widget type>(context, class of the widget I want to create)
+                                    //TemplateFunction<widget class>(context, widget instance)
         UUserWidget* CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), MenuWidgetClass);
 
         if (CurrentWidget != nullptr)
