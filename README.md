@@ -43,7 +43,7 @@ void AMenuButtonsGameModeBase::BeginPlay()
     if (MenuWidgetClass != nullptr)
     {
         //Create the widget and store it inside a pointer to a UUserWidget object
-                                    //TemplateFunction<widget class>(context, widget instance)
+                                    //TemplateFunction<widget class>(context, my widget instance I'll populate in the BP with UPROPERTY)
         UUserWidget* CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), MenuWidgetClass);
 
         if (CurrentWidget != nullptr)
@@ -100,15 +100,15 @@ void AMenuButtonsPlayerController::Speak()
 
 - in Unreal Engine
   - Create a folder for Menues, include an image for the pressed and unpressed buttons
-  - Create a WidgetBlueprint: Right click > UI > WidgetBlueprint
-    - Add a button, resize and ancor, change the collors for when normal, hovered and pressed
-  - On project settings > maps and modes: replace game mode base to my BP_MenuButtonsGameModeBase and my player controller with my BP_MenuButtonsPlayerController.
+  - Create a WidgetBlueprint: Right click > UI > WidgetBlueprint MenuWidget
+    - Add a button, resize and ancor, change the collors and images for when normal, hovered and pressed
+  - On project settings > maps and modes: replace game mode base to my BP_MenuButtonsGameModeBase and player controller with my BP_MenuButtonsPlayerController.
   - In BP_MenuButtonsGameModeBase select the Menu Widget in My Widget component
 
 ## Buttons functionality
-- In my MenuWidget on buttons event, select OnClick event
+- In my MenuWidget BP, on buttons event, select OnClick event
   - In the OnClick Event graph
-    - Get PlayerController > return an object and Cast it to BP_MenuButtonsPlayerControllerType (to use my custom player controller) / Execute OnClicked > call Speak with BP_MenuButtonsPlayerController as Target 
+    - Get PlayerController > return an object and Cast it to BP_MenuButtonsPlayerControllerType (to use as a reference to my custom player controller) / Execute OnClicked > call Speak with BP_MenuButtonsPlayerController as Target > execute 
 
 
 
